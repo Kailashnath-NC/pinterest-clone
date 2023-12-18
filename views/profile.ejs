@@ -1,0 +1,57 @@
+<% include ./partials/header.ejs %>
+  <div class="container w-full grow">
+    <form id="update-icon-form" action="/update-profile-pic" method="post" enctype="multipart/form-data" hidden>
+      <input type="file" name="profileImage" id="profileImage" />
+    </form>
+    <div id="user-details" class="flex flex-col items-center p-10">
+      <div class="relative">
+        <span id="updateIcon"
+          class="absolute bottom-0 right-0 bg-red-500 w-8 h-8 rounded-full flex items-center justify-center cursor-pointer">
+          <i class="ri-pencil-fill text-white"></i>
+        </span>
+        <div class="w-28 h-28 bg-red-300 rounded-full overflow-hidden">
+          <img class="w-full h-full object-cover" src="<%= currentUser.profileImage %>" alt="" />
+        </div>
+      </div>
+      <h1 class="text-4xl font-medium mt-2">
+        <%= currentUser.username %>
+      </h1>
+      <h4 class="text-xl mt-1">@<%= currentUser.username.toLowerCase() %>
+      </h4>
+      <a href="/edit" class="px-6 py-2 rounded-full bg-zinc-200 hover:bg-zinc-300 mt-5 font-medium text-lg">Edit
+        Profile</a>
+      <a href="/create-post" class="bg-red-500 text-white px-6 py-3 mt-3 rounded-full hover:bg-red-600">Create new
+        post</a>
+    </div>
+    <div class="cards flex flex-wrap gap-10 px-10">
+      <% if(currentUser.posts.length> 0 ) { %>
+        <!-- <div class="card w-60"> -->
+        <div class="card bg-zinc-100/0 hover:bg-zinc-100 rounded-lg">
+          <a href="/show/my-pins">
+            <!-- <div class="bg-slate-300 w-full h-44 rounded-lg"></div> -->
+            <div class="w-52 h-44 rounded-t-lg overflow-hidden">
+              <img class="w-full h-full object-cover"
+                src="<%= currentUser.posts[currentUser.posts.length-1].imageUrl %>" alt="" />
+            </div>
+            <h3 class="text-xl font-semibold mt-3 px-2">Your Pins</h3>
+            <h2 class="opacity-70 px-2">
+              <%= currentUser.posts.length %>
+            </h2>
+          </a>
+        </div>
+        <% } %>
+    </div>
+  </div>
+
+  <script>
+    document.querySelector("#updateIcon").addEventListener("click", function () {
+      document.querySelector("#update-icon-form input").click();
+    });
+
+    document
+      .querySelector("#update-icon-form input")
+      .addEventListener("change", function () {
+        document.querySelector("#update-icon-form").submit();
+      });
+  </script>
+  <% include ./partials/footer.ejs %>

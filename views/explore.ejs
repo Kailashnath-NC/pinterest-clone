@@ -1,0 +1,27 @@
+<% include ./partials/header.ejs %>
+    <div id="show-posts" class="w-full grow bg-zinc-500">
+        <div class="cards flex flex-wrap gap-10 px-10 py-6  text-white">
+            <!-- <div class="card w-60"> -->
+            <% allPosts.forEach( function(post){ %>
+
+                <div class="card w-36 rounded-lg">
+                    <!-- hover:brightness-75"> -->
+                    <!-- <a href="/show/my-pins/<%= post._id %>"> -->
+                    <!-- <div class="bg-slate-300 w-full h-44 rounded-lg"></div> -->
+                    <div class=" w-full h-44 rounded-lg overflow-hidden">
+                        <img class="w-full h-full object-cover" src="<%= post.imageUrl %>" alt="" />
+                    </div>
+                    <h3 class="text-base font-medium mt-1 px-1">
+                        <%= post.imageCaption %>
+                    </h3>
+                    <h5 class="text-sm font-light px-1 opacity-50">
+                        @<%= post.userId.username %>
+                    </h5>
+                    <!-- </a> -->
+                </div>
+                <% }) %>
+        </div>
+    </div>
+    </div>
+
+    <% include ./partials/footer.ejs %>
