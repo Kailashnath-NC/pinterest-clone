@@ -1,4 +1,4 @@
-# Pinterest Clone with expressJS
+# PintNode: Pinterest Clone with expressJS
 
 ## ExpressJS, NodeJS, MongoDB, EJS, TailwindCSS
 ### User-Authentication: mongoose, passport, passport-local, passport-local-mongoose
